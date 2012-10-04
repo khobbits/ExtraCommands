@@ -1,0 +1,14 @@
+# This determines the command prefix when there are conflicts (/name:home, /name:help, etc.)
+name: ExtraCommands
+main: uk.co.khobbits.extracommands.ExtraCommands
+version: 1.1
+website: http://khobbits.co.uk
+description: Extra Commands
+authors: [KHobbits]
+depends: [Essentials]
+
+commands:
+   wc:
+      description: Cycle through your warps
+      usage: /<command>
+      permission: extracommands.wc
