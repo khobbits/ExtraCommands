@@ -19,8 +19,6 @@ public class CommandHub implements CommandExecutor {
     
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        plugin.getLogger().info("hit command event");
-        
         Server server = plugin.getServer();
         ExtraCommand command;
         Player player = null;
@@ -34,7 +32,6 @@ public class CommandHub implements CommandExecutor {
             command = (ExtraCommand) CommandHub.class.getClassLoader().loadClass("uk.co.khobbits.extracommands.commands.Command" + cmd.getName().toLowerCase(Locale.ENGLISH)).newInstance();
             command.setEss(plugin.getEss());
             command.setPlugin(plugin);
-            plugin.getLogger().info("Triggered command");
             try {
                 if (player == null) {
                     command.run(server, sender, cmd, label, args);

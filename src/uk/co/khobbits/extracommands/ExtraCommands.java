@@ -5,6 +5,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.earth2me.essentials.IEssentials;
+import java.util.List;
+import java.util.Locale;
+import org.bukkit.command.Command;
+import org.bukkit.command.PluginCommandYamlParser;
 
 public class ExtraCommands extends JavaPlugin {
 
@@ -13,8 +17,11 @@ public class ExtraCommands extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        
-        getCommand("wc").setExecutor(new CommandHub(this));
+
+        final List<Command> commands = PluginCommandYamlParser.parse(this);
+        for (Command command : commands) {
+            getCommand(command.getName()).setExecutor(new CommandHub(this));
+        }
 
         final PluginManager pm = this.getServer().getPluginManager();
         final Plugin essPlugin = pm.getPlugin("Essentials");
