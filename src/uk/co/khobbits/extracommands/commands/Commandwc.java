@@ -30,11 +30,11 @@ public class Commandwc extends ExtraCommand {
         Warps warps = getEss().getWarps();
 
         if (warps.isEmpty()) {
-            throw new CommandException("No Warps Defined");
+            throw new CommandException("No warps defined");
         }
 
         final List<String> warpNameList = new ArrayList<String>(warps.getWarpNames());
-        if (warpNameList.size() > loop) {
+        while (warpNameList.size() > loop) {
 
             final String warpName = warpNameList.get(loop);
 
@@ -42,15 +42,16 @@ public class Commandwc extends ExtraCommand {
             try {
                 loc = warps.getWarp(warpName);
                 IUser user = getEss().getUser(player);
-                user.sendMessage("Warping to the " + loop + "th warp called: " + warpName);
+                user.sendMessage("Warping to warp No. " + loop + " called: " + warpName);
                 user.getTeleport().teleport(loc, null);
-            } catch (Exception ex) {
                 loop++;
-                player.setMetadata("warpCycle", new FixedMetadataValue(getPlugin(), loop));
-                throw new CommandException(ex.getMessage());
-            }
-            loop++;
-        } else {
+                break;
+            } catch (Exception ex) {
+                player.sendMessage("Warp error: " + ex.getMessage());
+                loop++;
+            }            
+        }
+        if (warpNameList.size() <= loop) {
             loop = 0;
         }
         player.setMetadata("warpCycle", new FixedMetadataValue(getPlugin(), loop));

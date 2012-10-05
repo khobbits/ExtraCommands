@@ -6,14 +6,14 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.earth2me.essentials.IEssentials;
 import java.util.List;
-import java.util.Locale;
+import java.util.logging.Level;
 import org.bukkit.command.Command;
 import org.bukkit.command.PluginCommandYamlParser;
 
 public class ExtraCommands extends JavaPlugin {
 
     private static final Logger LOGGER = Logger.getLogger("Minecraft");
-    private transient IEssentials ess;
+    private transient IEssentials ess = null;
 
     @Override
     public void onEnable() {
@@ -23,15 +23,25 @@ public class ExtraCommands extends JavaPlugin {
             getCommand(command.getName()).setExecutor(new CommandHub(this));
         }
 
+        getServer().getScheduler().scheduleSyncDelayedTask(this,
+                new Runnable() {
+
+                    @Override
+                    public void run() {
+                        hookEss();
+                    }
+                });
+    }
+
+    public void hookEss() {
         final PluginManager pm = this.getServer().getPluginManager();
         final Plugin essPlugin = pm.getPlugin("Essentials");
-        if (essPlugin == null) {
+        if (essPlugin == null || !essPlugin.isEnabled()) {
             this.setEnabled(false);
             LOGGER.warning("Couldn't hook ess.");
             return;
         }
         ess = (IEssentials) essPlugin;
-
     }
 
     public static Logger getLOGGER() {
@@ -39,6 +49,9 @@ public class ExtraCommands extends JavaPlugin {
     }
 
     public IEssentials getEss() {
+        if (ess == null) {
+            hookEss();
+        }
         return ess;
     }
 }
