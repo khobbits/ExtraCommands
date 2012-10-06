@@ -12,3 +12,7 @@ commands:
       description: Cycle through your warps
       usage: /<command>
       permission: extracommands.wc
+   banlist:
+      description: List of bans
+      usage: /<command>
+      permission: extracommands.banlist
