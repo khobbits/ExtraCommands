@@ -16,3 +16,11 @@ commands:
       description: List of bans
       usage: /<command>
       permission: extracommands.banlist
+   mutestatus:
+      description: Show the status of a muted player
+      usage: /<command>
+      permission: extracommands.mutestatus
+   jailstatus:
+      description: Show the status of a jailed player
+      usage: /<command>
+      permission: extracommands.jailstatus
