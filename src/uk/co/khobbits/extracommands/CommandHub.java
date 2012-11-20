@@ -30,7 +30,6 @@ public class CommandHub implements CommandExecutor {
         try {
             
             command = (ExtraCommand) CommandHub.class.getClassLoader().loadClass("uk.co.khobbits.extracommands.commands.Command" + cmd.getName().toLowerCase(Locale.ENGLISH)).newInstance();
-            command.setEss(plugin.getEss());
             command.setPlugin(plugin);
             try {
                 if (player == null) {
