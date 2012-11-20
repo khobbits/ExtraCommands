@@ -34,7 +34,7 @@ public abstract class ExtraCommand {
 
     protected User getPlayer(final String arg, final boolean getOffline) throws CommandException {
 
-        final Server server = ess.getServer();
+        final Server server = plugin.getServer();
 
         if (arg.isEmpty()) {
             throw new CommandException("Player not found");
