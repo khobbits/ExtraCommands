@@ -73,15 +73,12 @@ public abstract class ExtraCommand {
         return ess;
     }
 
-    public void setEss(IEssentials ess) {
-        this.ess = ess;
-    }
-
     public ExtraCommands getPlugin() {
         return plugin;
     }
 
     public void setPlugin(ExtraCommands plugin) {
         this.plugin = plugin;
+        this.ess = plugin.getEss();
     }
 }
