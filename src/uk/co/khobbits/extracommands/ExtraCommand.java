@@ -14,7 +14,7 @@ public abstract class ExtraCommand {
     private transient ExtraCommands plugin;
 
     public void run(final Server server, final Player player, final Command cmd, final String commandLabel, final String[] args) throws CommandException {
-        run(server, player, cmd, commandLabel, args);
+        run(server, (CommandSender)player, cmd, commandLabel, args);
     }
 
     public void run(final Server server, final CommandSender sender, final Command cmd, final String commandLabel, final String[] args) throws CommandException {
