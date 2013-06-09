@@ -1,7 +1,7 @@
 package uk.co.khobbits.extracommands.commands;
 
 import com.earth2me.essentials.User;
-import com.earth2me.essentials.Util;
+import com.earth2me.essentials.utils.DateUtil;
 import java.util.Set;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
@@ -28,7 +28,7 @@ public class Commandbanlist extends ExtraCommand {
                 continue;
             }
             if (banneduser.getBanTimeout() != 0) {
-                sender.sendMessage("Player: " + bannedplayer.getName() + " Expires: " + Util.formatDateDiff(banneduser.getBanTimeout()) + " Reason: " + banneduser.getBanReason());
+                sender.sendMessage("Player: " + bannedplayer.getName() + " Expires: " + DateUtil.formatDateDiff(banneduser.getBanTimeout()) + " Reason: " + banneduser.getBanReason());
             } else {
                 sender.sendMessage("Player: " + bannedplayer.getName() + " Reason: " + banneduser.getBanReason());
             }

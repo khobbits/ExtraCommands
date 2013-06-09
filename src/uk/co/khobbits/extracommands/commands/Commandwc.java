@@ -2,6 +2,7 @@ package uk.co.khobbits.extracommands.commands;
 
 import com.earth2me.essentials.IUser;
 import com.earth2me.essentials.Warps;
+import com.earth2me.essentials.api.IWarps;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Location;
@@ -27,13 +28,13 @@ public class Commandwc extends ExtraCommand {
             loop = 0;
         }
 
-        Warps warps = getEss().getWarps();
+        IWarps warps = getEss().getWarps();
 
         if (warps.isEmpty()) {
             throw new CommandException("No warps defined");
         }
 
-        final List<String> warpNameList = new ArrayList<String>(warps.getWarpNames());
+        final List<String> warpNameList = new ArrayList<String>(warps.getList());
         while (warpNameList.size() > loop) {
 
             final String warpName = warpNameList.get(loop);

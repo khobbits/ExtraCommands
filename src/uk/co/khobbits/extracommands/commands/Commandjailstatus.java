@@ -1,7 +1,7 @@
 package uk.co.khobbits.extracommands.commands;
 
 import com.earth2me.essentials.User;
-import com.earth2me.essentials.Util;
+import com.earth2me.essentials.utils.DateUtil;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -22,7 +22,7 @@ public class Commandjailstatus extends ExtraCommand {
         if (jailedUser.isJailed()) {
 
             Long time = jailedUser.getJailTimeout();
-            String expires = (time == 0) ? "Never" : Util.formatDateDiff(time);
+            String expires = (time == 0) ? "Never" : DateUtil.formatDateDiff(time);
             sender.sendMessage("Player: " + jailedUser.getName() + " Jailed: yes Expires: " + time);
 
         } else {
